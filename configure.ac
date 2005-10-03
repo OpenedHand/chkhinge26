@@ -1,0 +1,14 @@
+AC_PREREQ(2.53)
+AC_INIT(chkhinge26, 0.0, http://www.openedhand.com/)
+AM_INIT_AUTOMAKE()
+AC_CONFIG_SRCDIR(chkhinge26.c)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_STDC_HEADERS
+
+AC_OUTPUT([
+Makefile
+])
