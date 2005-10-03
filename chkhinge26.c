@@ -37,16 +37,16 @@
 
 void do_switch_event(int status, char *cmd) 
 {
-  char status_str[8];
+  char cmd_with_args[256];
 
-  snprintf(status_str, 8, "%i", status);
+  snprintf(cmd_with_args, 256, "%s %i", cmd, status);
 
   /* 3 = closed, 0 = landscape, 2 = portrait. Ignore 1 */
 
   switch (fork())
     {
     case 0:
-      execlp ("/bin/sh", "sh", "-c", cmd, status_str, (char *)NULL);
+      execlp ("/bin/sh", "sh", "-c", cmd_with_args, (char *)NULL);
       printf ("Error: Exec of '%s' failed.\n", cmd);
       exit (0);
       break;
