@@ -1,0 +1,5 @@
+2005-10-03  mallum,,,  <mallum@openedhand.com>
+
+	* chkhinge26.c: (main):
+	Fix some old evtest logic
+

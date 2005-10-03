@@ -78,8 +78,8 @@ int main (int argc, char **argv)
 		exit (1);
 	}
 
-	if ((fd = open(argv[argc - 1], O_RDONLY)) < 0) {
-		perror("evtest");
+	if ((fd = open(argv[1], O_RDONLY)) < 0) {
+		perror("chkhinge86");
 		exit(1);
 	}
 
