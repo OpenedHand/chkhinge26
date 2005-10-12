@@ -21,6 +21,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
@@ -54,6 +55,22 @@ void do_switch_event(int status, char *cmd)
       printf ("Error: Fork failed.\n");
       break;
     }
+}
+
+void
+cleanup_children(int s)
+{
+        kill(-getpid(), 15);  /* kill every one in our process group  */
+        exit(0);
+}
+
+void 
+install_signal_handlers(void)
+{
+        signal (SIGCHLD, SIG_IGN);  /* kernel can deal with zombies  */
+        signal (SIGINT, cleanup_children);
+        signal (SIGQUIT, cleanup_children);
+        signal (SIGTERM, cleanup_children);
 }
 
 
@@ -100,6 +117,8 @@ int main (int argc, char **argv)
 		printf("Error: An incorrect number of switches were found!\n");
 		exit(1);
 	}
+
+	install_signal_handlers();
 
 	/* Read Current Switch Status */
 	memset(switch_bits, 0, sizeof(switch_bits));

@@ -1,3 +1,8 @@
+2005-10-12  Matthew Allum  <mallum@openedhand.com>
+
+	* chkhinge26.c: (do_switch_event), (main):
+	Catch zombies, cleanup children on exit.
+
 2005-10-03  mallum,,,  <mallum@openedhand.com>
 
 	* chkhinge26.c:
